@@ -17,12 +17,14 @@ fun configureDatabases() {
     transaction(db) {
         // Создать таблицы, если их нет
         SchemaUtils.create(
+            SwitchName,
             SwitchType,
-            KeycapsType,
-            LayoutType,
-            KeyBoardCard,
-            KeycapsCard,
-            SwitchCard,
+            KeycapType,
+            KeycapMaterial,
+            LayoutTypes,
+            Keyboards,
+            Switches,
+            Keycaps,
             UserProfile,
             Repair
         )

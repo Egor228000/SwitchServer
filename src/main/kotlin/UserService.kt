@@ -3,38 +3,43 @@ package com.example
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
+import java.math.BigDecimal
 
 @kotlinx.serialization.Serializable
 data class KeyboardDTO(
     val id: Int,
     val name: String,
-    val image: String,
-    val descriptions: String,
+    val imageUrl: String,
+    val description: String,
     val switchType: String,
-    val keycapsType: String,
-    val layoutType: Int,
-    val price: Float
+    val keycapType: String,
+    val layoutType: String,
+    val price: Float,
+    val stockQuantity: Int
 )
 
 class UserService {
     companion object {
         suspend fun getAllKeyboards(): List<KeyboardDTO> = newSuspendedTransaction {
-            (KeyBoardCard innerJoin SwitchType innerJoin KeycapsType innerJoin LayoutType)
+            // innerJoin справочников по новым объектам Table
+            (Keyboards
+                    innerJoin SwitchType
+                    innerJoin KeycapType
+                    innerJoin LayoutTypes)
                 .selectAll()
                 .map(::mapRowToDTO)
         }
 
         private fun mapRowToDTO(row: ResultRow): KeyboardDTO = KeyboardDTO(
-            id = row[KeyBoardCard.id],
-            name = row[KeyBoardCard.name],
-            image = row[KeyBoardCard.image],
-            descriptions = row[KeyBoardCard.descriptions],
-            switchType = row[SwitchType.name],
-            keycapsType = row[KeycapsType.name],
-            layoutType = row[LayoutType.name],
-            price = row[KeyBoardCard.price]
+            id            = row[Keyboards.id],
+            name          = row[Keyboards.name],
+            imageUrl      = row[Keyboards.imageUrl],
+            description   = row[Keyboards.description],
+            switchType    = row[SwitchType.type],
+            keycapType    = row[KeycapType.type],
+            layoutType    = row[LayoutTypes.scale],
+            price         = row[Keyboards.price],
+            stockQuantity = row[Keyboards.stockQuantity]
         )
     }
-
 }
-

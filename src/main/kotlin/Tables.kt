@@ -46,19 +46,18 @@ object Keyboards : Table("keyboards") {
     val keycapTypeIdType  = integer("keycap_type_id_type").references(KeycapType.id)
     val keycapTypeIdMaterial  = integer("keycap_type_id_material").references(KeycapMaterial.id)
     val layoutTypeId  = integer("layout_type_id").references(LayoutTypes.id)
-    val price         = decimal("price", precision = 10, scale = 2)
+    val price         = float("price")
     val stockQuantity = integer("stock_quantity").default(0)
     override val primaryKey = PrimaryKey(id)
 }
 
 object Switches : Table("switches") {
     val id            = integer("id").autoIncrement()
-    val name          = varchar("name", length = 200)
+    val switchTypeIdName  = integer("switch_type_id_name").references(SwitchName.id)
     val imageUrl      = varchar("image_url", length = 500)
     val description   = text("description")
-    val switchTypeIdName  = integer("switch_type_id_name").references(SwitchName.id)
     val switchTypeIdType  = integer("switch_type_id_type").references(SwitchType.id)
-    val price         = decimal("price", precision = 10, scale = 2)
+    val price         = float("price")
     val stockQuantity = integer("stock_quantity").default(0)
     override val primaryKey = PrimaryKey(id)
 }
@@ -70,7 +69,7 @@ object Keycaps : Table("keycaps") {
     val description   = text("description")
     val keycapTypeIdType  = integer("keycap_type_id_type").references(KeycapType.id)
     val keycapTypeIdMaterial  = integer("keycap_type_id_material").references(KeycapMaterial.id)
-    val price         = decimal("price", precision = 10, scale = 2)
+    val price         = float("price")
     val stockQuantity = integer("stock_quantity").default(0)
     override val primaryKey = PrimaryKey(id)
 }
