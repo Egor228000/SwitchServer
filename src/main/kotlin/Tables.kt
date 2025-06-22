@@ -5,12 +5,12 @@ import org.jetbrains.exposed.sql.Table
 
 object SwitchName : Table("switch_name") {
     val id   = integer("id").autoIncrement()
-    val name = varchar("name", length = 100)
+    val name = varchar("name", length = 100) // Название  - Akko V3 Piano Pro Special Edition
     override val primaryKey = PrimaryKey(id)
 }
 object SwitchType : Table("switch_type") {
     val id   = integer("id").autoIncrement()
-    val type = varchar("type", length = 100)
+    val type = varchar("type", length = 100) // тип - линенйный кликающий магниттный и тд
     override val primaryKey = PrimaryKey(id)
 }
 
@@ -18,20 +18,20 @@ object SwitchType : Table("switch_type") {
 
 object KeycapType : Table("keycap_type") {
     val id   = integer("id").autoIncrement()
-    val type = varchar("type", length = 100)
+    val type = varchar("type", length = 100) // Профиль кекапов
     override val primaryKey = PrimaryKey(id)
 }
 
 
 object KeycapMaterial : Table("keycap_material") {
     val id   = integer("id").autoIncrement()
-    val material = varchar("material", length = 100)
+    val material = varchar("material", length = 100) // материал кейкапов
     override val primaryKey = PrimaryKey(id)
 }
 
 object LayoutTypes : Table("layout_types") {
     val id   = integer("id").autoIncrement()
-    val scale = varchar("scale", length = 100)
+    val scale = varchar("scale", length = 100) // Сколько проценетов  - 60 например
     override val primaryKey = PrimaryKey(id)
 }
 
