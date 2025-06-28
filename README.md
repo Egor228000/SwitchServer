@@ -1,44 +1,44 @@
-# switchserver
 
-This project was created using the [Ktor Project Generator](https://start.ktor.io).
 
-Here are some useful links to get you started:
 
-- [Ktor Documentation](https://ktor.io/docs/home.html)
-- [Ktor GitHub page](https://github.com/ktorio/ktor)
-- The [Ktor Slack chat](https://app.slack.com/client/T09229ZC6/C0A974TJ9). You'll need to [request an invite](https://surveys.jetbrains.com/s3/kotlin-slack-sign-up) to join.
+# 🚀 SwitchServer
 
-## Features
+> 🎯 **REST API для управления компонентами механических клавиатур**
 
-Here's a list of features included in this project:
+## 📖 Описание
 
-| Name                                                                   | Description                                                                        |
-| ------------------------------------------------------------------------|------------------------------------------------------------------------------------ |
-| [Routing](https://start.ktor.io/p/routing)                             | Provides a structured routing DSL                                                  |
-| [kotlinx.serialization](https://start.ktor.io/p/kotlinx-serialization) | Handles JSON serialization using kotlinx.serialization library                     |
-| [Content Negotiation](https://start.ktor.io/p/content-negotiation)     | Provides automatic content conversion according to Content-Type and Accept headers |
-| [Exposed](https://start.ktor.io/p/exposed)                             | Adds Exposed database to your application                                          |
-| [CORS](https://start.ktor.io/p/cors)                                   | Enables Cross-Origin Resource Sharing (CORS)                                       |
-| [Caching Headers](https://start.ktor.io/p/caching-headers)             | Provides options for responding with standard cache-control headers                |
+SwitchServer — это современный REST API, построенный на **Kotlin** и **Ktor**, предназначенный для управления инвентарем компонентов механических клавиатур. Система предоставляет удобные HTTP endpoints для получения информации о клавиатурах, переключателях, кейкапах и их характеристиках.
 
-## Building & Running
+## 🏗️ Архитектура
 
-To build or run the project, use one of the following tasks:
+Проект реализует классическую трёхуровневую архитектуру веб-приложения:
 
-| Task                          | Description                                                          |
-| -------------------------------|---------------------------------------------------------------------- |
-| `./gradlew test`              | Run the tests                                                        |
-| `./gradlew build`             | Build everything                                                     |
-| `buildFatJar`                 | Build an executable JAR of the server with all dependencies included |
-| `buildImage`                  | Build the docker image to use with the fat JAR                       |
-| `publishImageToLocalRegistry` | Publish the docker image locally                                     |
-| `run`                         | Run the server                                                       |
-| `runDocker`                   | Run using the local docker image                                     |
+### 🌐 API Layer (Уровень API)
+- **Назначение**: Обработка HTTP-запросов и сериализация ответов
+- **Компоненты**: `configureRouting.kt`, `HTTPConfig.kt`
+- **Функции**: Определение endpoints, CORS, кэширование 
 
-If the server starts successfully, you'll see the following output:
+### ⚙️ Service Layer (Сервисный уровень)  
+- **Назначение**: Бизнес-логика и агрегация данных
+- **Компоненты**: `UserService.kt`, `KeyboardDTO`
+- **Функции**: Сложные запросы и трансформация данных 
 
-```
-2024-12-04 14:32:45.584 [main] INFO  Application - Application started in 0.303 seconds.
-2024-12-04 14:32:45.682 [main] INFO  Application - Responding at http://0.0.0.0:8080
-```
+### 🗄️ Database Layer (Уровень базы данных)
+- **Назначение**: Персистентность данных и определение схемы
+- **Компоненты**: `Tables.kt`, SQLite база данных
+- **Функции**: Управление транзакциями и доступ к данным 
+
+## 🛠️ Технологический стек
+
+| Компонент | Технология | Версия | Назначение |
+|-----------|------------|--------|------------|
+| 🟣 **Веб-фреймворк** | Ktor | 3.2.0 | HTTP сервер и маршрутизация |
+| 🟠 **ORM** | Exposed SQL | 0.61.0 | Типобезопасный доступ к БД |
+| 🟡 **База данных** | SQLite | - | Встраиваемое хранилище |
+| 🔵 **Язык** | Kotlin | 2.1.10 | Среда выполнения JVM |
+| 🟢 **Сборка** | Gradle | - | Система сборки |
+| 📄 **Сериализация** | Kotlinx Serialization | - | JSON форматирование | [5](#0-4) 
+
+
+
 
